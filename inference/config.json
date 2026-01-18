@@ -1,0 +1,61 @@
+{
+  "model_type": "unix",
+  "architectures": [
+    "UniX"
+  ],
+  "visual_gen": true,
+  "visual_und": true,
+  "latent_patch_size": 1,
+  "max_latent_size": 32,
+  "vit_max_num_patch_per_side": 24,
+  "connector_act": "gelu_pytorch_tanh",
+  "interpolate_pos": false,
+  "timestep_shift": 1.0,
+  "llm_config": {
+    "model_type": "qwen2",
+    "hidden_size": 2048,
+    "intermediate_size": 5632,
+    "num_hidden_layers": 24,
+    "num_attention_heads": 16,
+    "num_key_value_heads": 16,
+    "vocab_size": 102400,
+    "max_position_embeddings": 16384,
+    "layer_module": "Qwen2MoTDecoderLayer",
+    "qk_norm": true,
+    "tie_word_embeddings": false,
+    "torch_dtype": "bfloat16"
+  },
+  "vit_config": {
+    "model_type": "siglip_vision_model",
+    "hidden_size": 1024,
+    "image_size": 384,
+    "intermediate_size": 4096,
+    "num_attention_heads": 16,
+    "num_hidden_layers": 24,
+    "patch_size": 16,
+    "select_layer": -1
+  },
+  "vae_config": {
+    "path": "weights/UniX/vae/kl-f16d16.ckpt",
+    "downsample": 16,
+    "z_channels": 16
+  },
+  "inference_config": {
+    "understanding": {
+      "do_sample": false,
+      "text_temperature": 0.3,
+      "cfg_text_scale": 2.0,
+      "cfg_img_scale": 1.0,
+      "cfg_interval": [0.4, 1.0],
+      "num_timesteps": 50
+    },
+    "generation": {
+      "cfg_text_scale": 2.0,
+      "cfg_img_scale": 1.0,
+      "cfg_interval": [0.4, 1.0],
+      "num_timesteps": 50,
+      "do_sample": false
+    }
+  },
+  "vae_path": "weights/UniX/vae/kl-f16d16.ckpt"
+}
